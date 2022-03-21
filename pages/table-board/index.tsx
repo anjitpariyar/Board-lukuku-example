@@ -10,6 +10,15 @@ const TableBoard = dynamic(
     loading: () => <p>...</p>,
   }
 );
+const Search = dynamic(() => import("board-lukuku").then((mod) => mod.Search), {
+  ssr: false,
+  loading: () => <p>...</p>,
+});
+
+const Goto = dynamic(() => import("board-lukuku").then((mod) => mod.Goto), {
+  ssr: false,
+  loading: () => <p>...</p>,
+});
 import { useRouter } from "next/router";
 
 const IndexPage = () => {
@@ -42,7 +51,11 @@ const IndexPage = () => {
 
   const router = useRouter();
   const page = router.query.page ? +router.query.page : undefined;
-
+  const onPageChange = (n) => {
+    if (n) {
+      router.push(`/?page=${n}`, undefined, { shallow: true });
+    }
+  };
   const settings = {
     data: sampleTablePropsData, //data as json
     columns: columns, // way to use data
@@ -52,11 +65,14 @@ const IndexPage = () => {
     next: <span>{">"}</span>, // default is >,
     showCode: true, // default is false
     page: page,
-    onPageChange: (n) => {
-      if (n) {
-        router.push(`/?page=${n}`, undefined, { shallow: true });
-      }
-    }, // required
+    onPageChange: onPageChange, // required
+  };
+
+  // search Form submit
+  const onFinish = (searchText) => {
+    router.push(`/table-board/?keyword=${searchText}`, undefined, {
+      shallow: true,
+    });
   };
 
   return (
@@ -68,7 +84,21 @@ const IndexPage = () => {
       {/* for now its a only wat to connect pagination and table */}
       <Container>
         <p>table</p>
+        <div style={{ margin: "2em 0" }}>
+          <Search
+            placeholder="Search"
+            buttonText={<span>Search</span>}
+            onFinish={onFinish}
+          />
+        </div>
         <TableBoard {...settings} />
+        <div style={{ margin: "2em 0" }}>
+          <Goto
+            data={sampleTablePropsData}
+            onPageChange={onPageChange}
+            pageSize={10}
+          />
+        </div>
       </Container>
     </>
   );
