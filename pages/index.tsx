@@ -32,9 +32,9 @@ export default function () {
               <p>Find in-depth information about Next.js features and API.</p>
             </a>
           </Link>
-          <Link href="/comments">
+          <Link href="/product/SinglePage">
             <a className="card">
-              <h3>Comments &rarr;</h3>
+              <h3>Single Page &rarr;</h3>
               <p>Find in-depth information about Next.js features and API.</p>
             </a>
           </Link>
