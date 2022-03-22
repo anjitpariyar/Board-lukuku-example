@@ -53,7 +53,7 @@ const IndexPage = () => {
   const page = router.query.page ? +router.query.page : undefined;
   const onPageChange = (n) => {
     if (n) {
-      router.push(`/?page=${n}`, undefined, { shallow: true });
+      router.push(`/table-board/?page=${n}`, undefined, { shallow: true });
     }
   };
   const settings = {
