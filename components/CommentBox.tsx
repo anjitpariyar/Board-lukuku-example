@@ -31,12 +31,15 @@ const CommentBox: React.FC<Props> = ({
   id,
   openComment,
   commentId,
+  ip,
+  memo,
+  no,
 }) => {
   const onClick = () => {
     if (commentId) {
       openComment(false);
     } else {
-      openComment(id);
+      openComment(no);
     }
   };
   return (
@@ -46,22 +49,23 @@ const CommentBox: React.FC<Props> = ({
         onClick={() => !inside && onClick()}
         inside={inside}
       >
-        <Date>{name}</Date>
+        <Date>{name + "(" + ip + ")"}</Date>
         <CardBody>
-          <p dangerouslySetInnerHTML={{ __html: text }} />
+          <p dangerouslySetInnerHTML={{ __html: memo }} />
         </CardBody>
         <Date style={{ textAlign: "right" }}>{date}</Date>
       </Card>
-      {commentId === id && <CommentForm inside={true} />}
+      {commentId === no && <CommentForm inside={true} />}
 
       {child && (
         <div style={{ marginBottom: "15px" }}>
           {threads?.map((data: Props, index) => {
             return (
               <>
+                {index.toString() + data?.date + data?.id}
                 <CommentBox
                   {...data}
-                  key={index.toString() + data?.date}
+                  key={index.toString() + data?.date + data?.id}
                   inside={true}
                 />
               </>
