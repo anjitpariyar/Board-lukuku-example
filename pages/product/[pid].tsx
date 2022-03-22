@@ -10,8 +10,8 @@ const Details = dynamic(
     loading: () => <p>...</p>,
   }
 );
-const CommentsWrapper = dynamic(
-  () => import("board-lukuku").then((mod) => mod.CommentsWrapper),
+const CommentsBoard = dynamic(
+  () => import("board-lukuku").then((mod) => mod.CommentsBoard),
   {
     ssr: false,
     loading: () => <p>...</p>,
@@ -26,6 +26,26 @@ const Post = () => {
   const router = useRouter();
   const { pid } = router.query;
   // comments data
+  // comments data
+  const page = router.query.page ? +router.query.page : undefined;
+  const onPageChange = (n) => {
+    if (n) {
+      router.push(`/product/${pid}/?page=${n}`, undefined, {
+        shallow: true,
+      });
+    }
+  };
+  const settings = {
+    data: commentsJson, //data as json
+    pageSize: 20, // default pagesize is 10
+    activePage: 1, // default is 1
+    prev: <span>{"<"}</span>, // default is <,
+    next: <span>{">"}</span>, // default is >,
+    page: page,
+    onPageChange: onPageChange, // required
+    CommentForm: CommentForm, //required
+    CommentBox: CommentBox, //required
+  };
 
   return (
     <>
@@ -37,11 +57,7 @@ const Post = () => {
         <Container>
           <Details pid={pid} />
           {/* comments */}
-          <CommentsWrapper
-            datas={commentsJson}
-            CommentForm={CommentForm}
-            CommentBox={CommentBox}
-          />
+          <CommentsBoard {...settings} />
         </Container>
       </div>
     </>
