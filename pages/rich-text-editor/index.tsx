@@ -89,6 +89,41 @@ export default function () {
               등록
             </Button>
           </Form>
+
+          <h2>Usages</h2>
+          <p>Imports</p>
+          <code>{`
+      import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+      import React, { useState, useCallback } from "react";
+      import dynamic from "next/dynamic";
+      const RichEditor = dynamic(
+        () => import("board-lukuku").then((mod) => mod.RichEditor),
+        {
+          ssr: false,
+          loading: () => <p>...</p>,
+        }
+      );
+      
+      `}</code>
+          <p>Functions</p>
+          <code>{`
+      // draft
+      const handleEditorContent = (content: any) => {
+        console.log("content", content);
+        setData({ ...data, body: content, articleUpdated: true });
+      };
+    
+      const Submit = (e) => {
+        e.preventDefault();
+        console.log("data", data);
+      };
+      `}</code>
+          <p>Components</p>
+          <code>{`
+      <div style={{ height: "400px", overflowY: "auto" }}>
+      <RichEditor handleContent={handleEditorContent} />
+    </div>
+      `}</code>
         </Container>
       </main>
     </>

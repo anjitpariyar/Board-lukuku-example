@@ -364,6 +364,24 @@ template {
   display: none;
 }
 
+code{
+  color: #f8f8f2;
+text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+direction: ltr;
+text-align: left;
+white-space: pre;
+word-spacing: normal;
+word-break: normal;
+line-height: 1.5;
+tab-size: 4;
+hyphens: none;
+padding: 1.5em;
+background: #1d1f21;
+margin: 1.5rem 0;
+display: block;
+border-radius:6px ;
+}
+
 
 
 

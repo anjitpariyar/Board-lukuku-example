@@ -18,8 +18,8 @@ const CommentsWrapper = dynamic(
   }
 );
 import { Container } from "styled/Container";
-import CommentForm from "components/common/CommentForm";
-import CommentBox from "components/common/CommentBox";
+import CommentForm from "components/CommentForm";
+import CommentBox from "components/CommentBox";
 
 const Post = () => {
   const router = useRouter();

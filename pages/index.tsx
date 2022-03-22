@@ -106,7 +106,7 @@ export default function () {
           font-size: 1.5rem;
         }
         code {
-          background: #fafafa;
+          // background: #fafafa;
           border-radius: 5px;
           padding: 0.75rem;
           font-size: 1.1rem;
