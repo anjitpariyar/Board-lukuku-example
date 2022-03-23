@@ -8,7 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "board-lukuku": "^1.2.1",
+    "board-lukuku": "^1.2.2",
     "draft-js": "^0.11.7",
     "next": "^12.1.0",
     "react": "^17.0.2",

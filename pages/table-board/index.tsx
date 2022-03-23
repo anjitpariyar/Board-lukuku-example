@@ -2,6 +2,7 @@ import { sampleTablePropsData } from "utils/sample-data";
 import { Container } from "styled/Container";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useState } from "react";
 
 const TableBoard = dynamic(
   () => import("board-lukuku").then((mod) => mod.TableBoard),
@@ -26,26 +27,37 @@ const IndexPage = () => {
     {
       title: "ID",
       dataIndex: "id",
-      value: (item: any) => <span>{item.id}</span>,
+      value: (item: any) => (
+        <div style={{ textAlign: "center" }}>{item.id}</div>
+      ),
+      width: "50px",
     },
     {
-      title: "Title",
+      title: <div style={{ textAlign: "left" }}>Title</div>,
       dataIndex: "title",
       value: (item: any) => (
-        <Link href={"product/" + item.id}>
-          <a>{item.title}</a>
-        </Link>
+        <div style={{ textAlign: "left" }}>
+          <Link href={`product/${item.id}`}>
+            <a>{item.title}</a>
+          </Link>
+        </div>
       ),
     },
     {
       title: "Writer",
       dataIndex: "writer",
-      value: (item: any) => <span>{item.writer}</span>,
+      value: (item: any) => (
+        <div style={{ textAlign: "center" }}>{item.writer}</div>
+      ),
+      width: "100px",
     },
     {
       title: "Viewcount",
       dataIndex: "viewcount",
-      value: (item: any) => <span>{item.viewcount}</span>,
+      value: (item: any) => (
+        <div style={{ textAlign: "center" }}>{item.viewcount}</div>
+      ),
+      width: "50px",
     },
   ];
 
@@ -56,6 +68,8 @@ const IndexPage = () => {
       router.push(`/table-board/?page=${n}`, undefined, { shallow: true });
     }
   };
+  const [theme, setTheme] = useState("theme3");
+
   const settings = {
     data: sampleTablePropsData, //data as json
     columns: columns, // way to use data
@@ -66,6 +80,7 @@ const IndexPage = () => {
     showCode: true, // default is false
     page: page,
     onPageChange: onPageChange, // required
+    theme: theme, //option theme 1,2,3
   };
 
   // search Form submit
@@ -73,6 +88,11 @@ const IndexPage = () => {
     router.push(`/table-board/?keyword=${searchText}`, undefined, {
       shallow: true,
     });
+  };
+
+  // selectChange
+  const selectChange = (e) => {
+    setTheme(e.target.value);
   };
 
   return (
@@ -99,6 +119,12 @@ const IndexPage = () => {
             pageSize={10}
           />
         </div>
+        <select onChange={selectChange}>
+          <option value="notheme">notheme</option>
+          <option value="theme1">theme1</option>
+          <option value="theme2">theme2</option>
+          <option value="theme3">theme3</option>
+        </select>
         {/* code */}
         <h2>How to use it</h2>
         <p>Imports</p>

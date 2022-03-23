@@ -211,10 +211,10 @@
   "resolved" "https://registry.npmjs.org/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz"
   "version" "6.18.0"
 
-"board-lukuku@^1.2.1":
-  "integrity" "sha512-XIvcxaSsm2KsBZKzQbIxFhDbWfd8KAWObUDYArRV+MszWRkouiZDVvYq7q7PGV1gOJMohEPLvvvbPpAGqr5MrA=="
-  "resolved" "https://registry.npmjs.org/board-lukuku/-/board-lukuku-1.2.1.tgz"
-  "version" "1.2.1"
+"board-lukuku@^1.2.2":
+  "integrity" "sha512-vSqjyDgTMwHHJDcXi82Uqt183tNGBWnIT4xav8QpTSXKWxFbYl42h+B426uNYlhScaRiOABHyyBy2vu35TC2Dw=="
+  "resolved" "https://registry.npmjs.org/board-lukuku/-/board-lukuku-1.2.2.tgz"
+  "version" "1.2.2"
 
 "camelize@^1.0.0":
   "integrity" "sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs="
